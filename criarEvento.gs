@@ -1,10 +1,10 @@
 function criarEventosPlanilha() {
   var sheet = SpreadsheetApp
-    .openById("1MlZVh9jAbjEImmos7IOQhRxrZ10ekzZn0byCCmOgZvk")
-    .getSheetByName("Reuniões ");
+    .openById("/*[ID DA SUA PLANILHA]*/")
+    .getSheetByName("/*[NOME DA PÁGINA DA SUA TABELA]*/");
 
   if (!sheet) {
-    throw new Error("Aba 'Reuniões ' não encontrada. Confira o nome exato da aba.");
+    throw new Error("Aba não encontrada. Confira o nome exato da aba.");
   }
   
   var dados = sheet.getRange(2, 1, sheet.getLastRow()-1, sheet.getLastColumn()).getValues();

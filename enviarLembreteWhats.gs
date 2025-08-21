@@ -19,10 +19,6 @@ function gerarJSONEventosDoDiaFormatado() {
     return {
       number: "/* [NÚMERO PARA ENVIAR O LEMBRETE] */",
       name: evento.getTitle() || "Contato",
-      tags: [
-        "Best App",
-        "Chatbot"
-      ],
       body: "Reunião " + (index + 1) + ":\n" +
         "Empresa: " + evento.getTitle() + "\n" +
         "Horário: " + formatarHora(evento.getStartTime()) + "\n" +
@@ -35,7 +31,7 @@ function gerarJSONEventosDoDiaFormatado() {
     String(hoje.getDate()).padStart(2, '0') + "/" +
     String(hoje.getMonth() + 1).padStart(2, '0') + ".json";
 
-  var pastaId = "15138ECUf55WM_vy3io4FyvmyHejASeIo";
+  var pastaId = "/*[ID DA PASTA ONDE SERÃO CRIADOS OS ARQUIVOS JSON]*/";
   var pasta = DriveApp.getFolderById(pastaId);
   pasta.createFile(nomeArquivo, jsonStr, "application/json");
 
@@ -45,12 +41,12 @@ function gerarJSONEventosDoDiaFormatado() {
 }
 
 function enviarMensagemViaAPI(mensagens) {
-  var url = "https://api.staging.naty.app/api/v2/messages";
+  var url = "/*[URL DA API]*/";
 
   var payload = {
     name: "Reuniões Diárias",
-    whatsappId: "c5331e39-9feb-4e44-b37e-2ea84ae243a0",
-    queueId: "d4d94c1b-5697-4184-a851-db1be1b990e6",
+    whatsappId: "/*[ID DO WHATSAPP]*/",
+    queueId: "/*[ID DA FILA]*/",
     minMsgInterval: 1000,
     maxMsgInterval: 2000,
     messages: mensagens
@@ -60,8 +56,7 @@ function enviarMensagemViaAPI(mensagens) {
     method: "post",
     contentType: "application/json",
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkOmNhbXBhaWducyIsIm1hbmFnZTpjYW1wYWlnbnMiLCJjcmVhdGU6bWVzc2FnZXMiLCJjcmVhdGU6bWVkaWFzIiwicmVhZDp3aGF0c2FwcHMiLCJ1cGRhdGU6d2hhdHNhcHBzIiwicmVhZDpxdWV1ZXMiLCJyZWFkOnVzZXJzIl0sImNvbXBhbnlJZCI6ImZmNDUzYmU5LTkyYzctNGVlZS1iNjE1LThmMTg5MDEzMTg0YSIsImlhdCI6MTcwNjgwOTA3NH0.q5w4XGartpQwjODEsHUzMNvUToji_UIe3oZxXG5A3ng",
-      "User-Agent": "insomnia/9.2.0"
+      Authorization: /*[TOKEN DA SUA API]*/,
     },
     payload: JSON.stringify(payload),
     muteHttpExceptions: true
